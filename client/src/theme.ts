@@ -1,4 +1,48 @@
-export const tokens = {
+import { PaletteMode } from "@mui/material";
+import { createTheme } from "@mui/material/styles";
+import { createContext, useCallback, useMemo, useState } from "react";
+
+const darkBackgroundColors = {
+  grey: {
+    100: "#242427",
+    200: "#48494e",
+    300: "#6b6d74",
+    400: "#8f929b",
+    500: "#b3b6c2",
+    600: "#c2c5ce",
+    700: "#d1d3da",
+    800: "#e1e2e7",
+    900: "#f0f0f3",
+  },
+  primary: {
+    100: "#043028",
+    200: "#076050",
+    300: "#0b8f78",
+    400: "#0ebfa0",
+    500: "#12efc8",
+    600: "#41f2d3",
+    700: "#71f5de",
+    800: "#a0f9e9",
+    900: "#d0fcf4",
+  },
+  secondary: {
+    100: "#302411",
+    200: "#614822",
+    300: "#916c33",
+    400: "#c29044",
+    500: "#f2b455",
+    600: "#f5c377",
+    700: "#f7d299",
+    800: "#fae1bb",
+    900: "#fcf0dd",
+  },
+  tertiary: {
+    // purple
+    500: "#8884d8",
+  }
+};
+
+const lightBackgroundColors = {
   grey: {
     100: "#f0f0f3",
     200: "#e1e2e7",
@@ -11,7 +55,6 @@ export const tokens = {
     900: "#242427",
   },
   primary: {
-    // light green
     100: "#d0fcf4",
     200: "#a0f9e9",
     300: "#71f5de",
@@ -23,7 +66,6 @@ export const tokens = {
     900: "#043028",
   },
   secondary: {
-    // yellow
     100: "#fcf0dd",
     200: "#fae1bb",
     300: "#f7d299",
@@ -37,70 +79,90 @@ export const tokens = {
   tertiary: {
     // purple
     500: "#8884d8",
-  },
-  background: {
-    light: "#2d2d34",
-    main: "#1f2026",
-  },
+  }
 };
 
-// mui theme settings
-export const themeSettings = {
-  palette: {
-    primary: {
-      ...tokens.primary,
-      main: tokens.primary[500],
-      light: tokens.primary[400],
+
+export const tokens = (mode: string) => ({
+  ...(mode === "dark" ? darkBackgroundColors : lightBackgroundColors),
+});
+
+export const themeSettings = (mode: string) => {
+  const colors = tokens(mode); 
+  return {
+    palette: {
+      mode: mode as PaletteMode,
+      primary: {
+        ...colors.primary,
+        main: colors.primary[500],
+        light: colors.primary[400],
+      },
+      secondary: {
+        ...colors.secondary,
+        main: colors.secondary[500],
+      },
+      tertiary: {
+        ...colors.tertiary,
+      },
+      grey: {
+        ...colors.grey,
+        main: colors.grey[500],
+      },
+      background: {
+        default: mode === "dark" ? "#1f2026" : "#ffffff",
+      },
     },
-    secondary: {
-      ...tokens.secondary,
-      main: tokens.secondary[500],
-    },
-    tertiary: {
-      ...tokens.tertiary,
-    },
-    grey: {
-      ...tokens.grey,
-      main: tokens.grey[500],
-    },
-    background: {
-      default: tokens.background.main,
-      light: tokens.background.light,
-    },
-  },
-  typography: {
-    fontFamily: ["Inter", "sans-serif"].join(","),
-    fontSize: 12,
-    h1: {
-      fontFamily: ["Inter", "sans-serif"].join(","),
-      fontSize: 32,
-    },
-    h2: {
-      fontFamily: ["Inter", "sans-serif"].join(","),
-      fontSize: 24,
-    },
-    h3: {
-      fontFamily: ["Inter", "sans-serif"].join(","),
-      fontSize: 20,
-      fontWeight: 800,
-      color: tokens.grey[200],
-    },
-    h4: {
-      fontFamily: ["Inter", "sans-serif"].join(","),
-      fontSize: 14,
-      fontWeight: 600,
-      color: tokens.grey[300],
-    },
-    h5: {
+
+    typography: {
       fontFamily: ["Inter", "sans-serif"].join(","),
       fontSize: 12,
-      fontWeight: 400,
-      color: tokens.grey[500],
+      h1: {
+        fontFamily: ["Inter", "sans-serif"].join(","),
+        fontSize: 32,
+      },
+      h2: {
+        fontFamily: ["Inter", "sans-serif"].join(","),
+        fontSize: 24,
+      },
+      h3: {
+        fontFamily: ["Inter", "sans-serif"].join(","),
+        fontSize: 20,
+        fontWeight: 800,
+      },
+      h4: {
+        fontFamily: ["Inter", "sans-serif"].join(","),
+        fontSize: 14,
+        fontWeight: 600,
+      },
+      h5: {
+        fontFamily: ["Inter", "sans-serif"].join(","),
+        fontSize: 12,
+        fontWeight: 400,
+      },
+      h6: {
+        fontFamily: ["Inter", "sans-serif"].join(","),
+        fontSize: 10,
+      },
     },
-    h6: {
-      fontFamily: ["Inter", "sans-serif"].join(","),
-      fontSize: 10,
-      color: tokens.grey[700],
-    },
-  },
+  };
+};
+
+
+
+
+export const ColorModeContext = createContext({
+  toggleColorMode: () => {},
+});
+
+export const useMode = () => {
+  const [mode, setMode] = useState("dark");
+
+  const toggleColorMode = useCallback(() => {
+    console.log("toggleColorMode");
+    setMode((prev) => (prev === "light" ? "dark" : "light"));
+  }, []);
+
+  const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
+  console.log(theme.palette.mode, mode);
+  return { theme, toggleColorMode };
 };
