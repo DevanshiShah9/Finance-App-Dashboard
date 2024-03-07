@@ -2,6 +2,7 @@ import { PaletteMode } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import { createContext, useCallback, useMemo, useState } from "react";
 
+//dark to light
 const darkBackgroundColors = {
   grey: {
     100: "#242427",
@@ -42,6 +43,7 @@ const darkBackgroundColors = {
   }
 };
 
+//light to dark
 const lightBackgroundColors = {
   grey: {
     100: "#f0f0f3",

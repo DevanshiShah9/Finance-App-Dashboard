@@ -17,7 +17,7 @@ const Navbar = () => {
   const [hoverState, setHoverState] = useState("");
 
   const handleToggle = () => {
-    console.log(theme.palette.background.default, theme.palette.mode);
+    // console.log(theme.palette.background.default, theme.palette.mode);
     colorMode.toggleColorMode();
   }
 
