@@ -43,7 +43,7 @@ const darkBackgroundColors = {
   }
 };
 
-//light to dark
+//light to light
 const lightBackgroundColors = {
   grey: {
     100: "#f0f0f3",
