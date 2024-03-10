@@ -1,7 +1,7 @@
 import { Box, useMediaQuery } from "@mui/material";
-import Row1 from "./Row1";
-import Row2 from "./Row2";
-import Row3 from "./Row3";
+import TopRow from "./TopRow";
+import MidColumn from "./MidColumn";
+import SideColumns from "./SideColumns";
 
 const gridTemplateLargeScreens = `
   "a b c"
@@ -10,10 +10,11 @@ const gridTemplateLargeScreens = `
   "a b c"
   "d e f"
   "d e f"
-  "d h i"
-  "g h i"
-  "g h j"
-  "g h j"
+  "d g f"
+  "d g f"
+  "d h f"
+  "d h f"
+  
 `;
 const gridTemplateSmallScreens = `
   "a"
@@ -27,25 +28,25 @@ const gridTemplateSmallScreens = `
   "c"
   "c"
   "c"
-  "d"
-  "d"
-  "d"
+  "c"
   "e"
   "e"
-  "f"
-  "f"
-  "f"
-  "g"
   "g"
   "g"
   "h"
   "h"
-  "h"
-  "h"
-  "i"
-  "i"
-  "j"
-  "j"
+  "d"
+  "d"
+  "d"
+  "d"
+  "d"
+  "d"
+  "f"
+  "f"
+  "f"
+  "f"
+  "f"
+  "f"
 `;
 
 const Dashboard = () => {
@@ -70,9 +71,9 @@ const Dashboard = () => {
             }
       }
     >
-      <Row1 />
-      <Row2 />
-      <Row3 />
+      <TopRow />
+      <MidColumn />
+      <SideColumns />
     </Box>
   );
 };
