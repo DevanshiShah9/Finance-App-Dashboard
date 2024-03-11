@@ -21,6 +21,7 @@ const Predictions = () => {
   const { palette } = useTheme();
   const [isPredictions, setIsPredictions] = useState(false);
   const [hovered, setHovered] = useState(false);
+  const gridStroke = palette.mode == "dark" ? palette.grey[200]: palette.grey[800];
 
   const { data: kpiData, isLoading: kpiLoading } = useGetKpisQuery();
   // Render loading state if either query is still loading
@@ -81,7 +82,7 @@ const Predictions = () => {
             bottom: 80,
           }}
         >
-          <CartesianGrid strokeDasharray="3 3" stroke={palette.grey[800]} />
+          <CartesianGrid strokeDasharray="3 3" stroke={gridStroke} />
           <XAxis dataKey="name" tickLine={false} style={{ fontSize: "10px" }}>
             <Label value="Month" offset={-5} position="insideBottom" />
           </XAxis>
