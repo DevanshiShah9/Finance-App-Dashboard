@@ -1,4 +1,14 @@
 # ML Driven Financial-Revenue-Dashboard Application 
+## Result
+## Final Images
+
+![Screenshot 2024-03-11 at 6 34 59 AM](https://github.com/DevanshiShah9/Finance-App-Dashboard/assets/65914716/e1b4f563-ab4c-421f-8226-1ae1b1647005)
+
+![Screenshot 2024-03-11 at 6 35 14 AM (2)](https://github.com/DevanshiShah9/Finance-App-Dashboard/assets/65914716/b947eeb4-33e9-4226-ba70-831246c20437)
+
+![Screenshot 2024-03-11 at 6 35 32 AM (2)](https://github.com/DevanshiShah9/Finance-App-Dashboard/assets/65914716/5348b7c5-14b0-4664-bac9-17137ba9f1ba)
+
+![Screenshot 2024-03-11 at 6 35 41 AM (2)](https://github.com/DevanshiShah9/Finance-App-Dashboard/assets/65914716/0908348b-72db-4435-8b05-8390fae893a8)
 
 ## Goal
 
@@ -40,13 +50,3 @@ Here is an overview of the project's current progress:
 - open two terminals for client and server folder respectively
 - run "npm run dev" in both the terminals
 
-
-## Final Images
-
-![Screenshot 2024-03-11 at 6 34 59 AM](https://github.com/DevanshiShah9/Finance-App-Dashboard/assets/65914716/e1b4f563-ab4c-421f-8226-1ae1b1647005)
-
-![Screenshot 2024-03-11 at 6 35 14 AM (2)](https://github.com/DevanshiShah9/Finance-App-Dashboard/assets/65914716/b947eeb4-33e9-4226-ba70-831246c20437)
-
-![Screenshot 2024-03-11 at 6 35 32 AM (2)](https://github.com/DevanshiShah9/Finance-App-Dashboard/assets/65914716/5348b7c5-14b0-4664-bac9-17137ba9f1ba)
-
-![Screenshot 2024-03-11 at 6 35 41 AM (2)](https://github.com/DevanshiShah9/Finance-App-Dashboard/assets/65914716/0908348b-72db-4435-8b05-8390fae893a8)
