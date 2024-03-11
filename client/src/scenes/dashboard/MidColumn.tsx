@@ -1,4 +1,3 @@
-import { useMemo } from 'react';
 import BoxHeader from "../../components/BoxHeader";
 import DashboardBox from "../../components/DashboardBox";
 import FlexBetween from "../../components/FlexBetween";
@@ -16,11 +15,19 @@ const MidColumn = () => {
   const darkGreen= palette.mode === "dark" ? palette.primary[300] : palette.primary[800];
   const lightGreen = palette.mode === "dark" ? palette.primary[800] : palette.primary[300];
   const pieColors = [darkGreen, lightGreen];
-  const { data: kpiData } = useGetKpisQuery();
-  const { data: transactionData } = useGetTransactionsQuery();
+  // const { data: kpiData } = useGetKpisQuery();
+  // const { data: transactionData } = useGetTransactionsQuery();
   const greenColor = palette.mode === "dark" ? palette.primary[300] : palette.primary[700];
 
-  const ATV = useMemo(() => {
+  const { data: kpiData, isLoading: kpiLoading } = useGetKpisQuery();
+  const { data: transactionData, isLoading: transactionLoading } = useGetTransactionsQuery();
+
+  // Render loading state if either query is still loading
+  if (kpiLoading || transactionLoading) {
+    return <div>Loading...</div>;
+  }
+
+  const ATV = () => {
     if (!kpiData || !transactionData) return null;
 
     const totalRevenue = kpiData[0].totalRevenue;
@@ -30,15 +37,15 @@ const MidColumn = () => {
 
     const ATV = totalRevenue / totalTransactions;
     return ATV.toFixed(2);
-  }, [kpiData, transactionData]);
+  };
 
-  const UniqueUsersCount = useMemo(() => {
+  const UniqueUsersCount = () => {
     if (!transactionData) return null;
     const uniqueBuyers = new Set(transactionData.map(transaction => transaction.buyer));
     return uniqueBuyers.size;
-  }, [transactionData]);
+  };
 
-  const repeatRate = useMemo(() => {
+  const repeatRate = () => {
     interface PieData {
       name: string;
       value: number;
@@ -59,7 +66,7 @@ const MidColumn = () => {
       { name: "Remaining", value: parseFloat((100 - repeat_rate).toFixed(2)) }, // Convert to number
     ];
     return pieData;
-  }, [transactionData]);
+  };
 
 
   return (
@@ -71,13 +78,13 @@ const MidColumn = () => {
             <Typography variant="h3">ATV</Typography>
             <Typography variant="h6">(Average Transaction Value)</Typography>
             <Typography m="0.3rem 0" variant="h3" color={greenColor}>
-              ${ATV}
+              ${ATV()}
             </Typography>
           </Box>
           <Box mt="0.2rem" flexBasis="30%" textAlign="center">
           <Typography variant="h4" fontWeight={800} textAlign='center'>
             <span>Customer Repeat Rate: </span>
-            <span style={{ color: greenColor }}>{repeatRate[0].value}%</span>
+            <span style={{ color: greenColor }}>{repeatRate()[0].value}%</span>
             </Typography>
           <div style={{ width: '90%', display: 'flex', justifyContent: 'center' }}>
             <PieChart
@@ -92,13 +99,13 @@ const MidColumn = () => {
             >
               <Pie
                 stroke="none"
-                data={repeatRate}
+                data={repeatRate()}
                 innerRadius={28}
                 outerRadius={38}
                 paddingAngle={2}
                 dataKey="value"
               >
-                {repeatRate.map((_entry, index) => (
+                {repeatRate().map((_entry, index) => (
                   <Cell key={`cell-${index}`} fill={pieColors[index]} />
                 ))}
               </Pie>
@@ -136,7 +143,7 @@ const MidColumn = () => {
           ></Box>
         </Box>
         <Typography margin="0 1rem" variant="h6">
-          {UniqueUsersCount} unique customers have made a purchase this year. 
+          {(UniqueUsersCount())} unique customers have made a purchase this year. 
           The goal was to reach 500 unique customers by the end of the year.
         </Typography>
       </DashboardBox>

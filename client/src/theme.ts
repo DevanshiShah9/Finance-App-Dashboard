@@ -160,11 +160,9 @@ export const useMode = () => {
   const [mode, setMode] = useState("dark");
 
   const toggleColorMode = useCallback(() => {
-    console.log("toggleColorMode");
     setMode((prev) => (prev === "light" ? "dark" : "light"));
   }, []);
 
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
-  console.log(theme.palette.mode, mode);
   return { theme, toggleColorMode };
 };

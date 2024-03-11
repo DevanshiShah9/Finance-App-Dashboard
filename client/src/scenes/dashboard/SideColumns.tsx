@@ -1,6 +1,5 @@
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-nocheck
-import { useMemo } from 'react';
 import BoxHeader from "../../components/BoxHeader";
 import DashboardBox from "../../components/DashboardBox";
 import { useGetKpisQuery, useGetProductsQuery } from '../../state/api';
@@ -13,11 +12,21 @@ import { PieChart, Pie, Tooltip, ResponsiveContainer, Cell} from 'recharts';
 
 const SideColumns = () => {
   const { palette } = useTheme();
-  const { data: productData } = useGetProductsQuery();
-  const { data: kpiData } = useGetKpisQuery();
+  // const { data: productData } = useGetProductsQuery();
+  // const { data: kpiData } = useGetKpisQuery();
   const greenColor = palette.mode === "dark" ? palette.primary[300] : palette.primary[700];
+  const cellSeparatorColor = palette.mode == "dark" ? palette.grey[300]: palette.grey[700];
+  const tableTextColor = palette.grey[900];
 
-  const sortedProducts = useMemo(() => {
+  const { data: productData, isLoading: productLoading } = useGetProductsQuery();
+  const { data: kpiData, isLoading: kpiLoading } = useGetKpisQuery();
+
+  // Check if data is still loading
+  if (productLoading || kpiLoading) {
+    return <div>Loading...</div>;
+  }
+
+  const sortedProducts = () => {
     if (!productData) return [];
     return productData
       .map(product => ({
@@ -25,11 +34,11 @@ const SideColumns = () => {
         unitsSold: product.transactions.length
       }))
       .sort((a, b) => b.unitsSold - a.unitsSold);
-  }, [productData]);
+  };
 
-  const top10Products = sortedProducts.slice(0, 10);
+  const top10Products = sortedProducts().slice(0, 10);
 
-  const top10ProductsData = useMemo(() => {
+  const top10ProductsData = () => {
     if (!productData) return [];
     const top10productsAllColumns =  top10Products.map((topProduct: { _id: string; unitsSold: number; }) => {
       const matchingProduct = productData.find(product => product._id === topProduct._id);
@@ -43,14 +52,14 @@ const SideColumns = () => {
       };
     });
     return top10productsAllColumns;
-  }, [top10Products, productData]);
+  };
 
-  const RevenueDistribution = useMemo(() => {
+  const RevenueDistribution = () => {
     return [
       { name: "Expenses", value: parseInt(kpiData[0].totalExpenses), color: palette.tertiary[500]},
       { name: "Profit", value: parseInt(kpiData[0].totalProfit), color: greenColor }
     ];
-  } ,[greenColor, kpiData, palette]);
+  };
   
 
   const productColumns = [
@@ -86,7 +95,7 @@ const SideColumns = () => {
       <BoxHeader
           title="List of Top 10 Popular Products"
           subtitle='Top 10 Products that have been sold the most in the current year'
-          sideText={`${top10ProductsData?.length} products`}
+          sideText={`${top10ProductsData()?.length} products`}
         />
         <Box
           mt="2.5rem"
@@ -94,14 +103,14 @@ const SideColumns = () => {
           height="75%"
           sx={{
             "& .MuiDataGrid-root": {
-              color: palette.grey[300],
+              color: tableTextColor,
               border: "none",
             },
             "& .MuiDataGrid-cell": {
-              borderBottom: `1px solid ${palette.grey[800]} !important`,
+              borderBottom: `1px solid ${cellSeparatorColor} !important`,
             },
             "& .MuiDataGrid-columnHeaders": {
-              borderBottom: `1px solid ${palette.grey[800]} !important`,
+              borderBottom: `1px solid ${cellSeparatorColor} !important`,
             },
             "& .MuiDataGrid-columnSeparator": {
               visibility: "hidden",
@@ -112,7 +121,7 @@ const SideColumns = () => {
             columnHeaderHeight={25}
             rowHeight={35}
             hideFooter={true}
-            rows={top10ProductsData || []}
+            rows={top10ProductsData() || []}
             columns={productColumns}
             getRowId={(row) => row._id} 
           />
@@ -128,7 +137,7 @@ const SideColumns = () => {
         <PieChart width={400} height={400}>
           <Pie
             dataKey="value"
-            data={RevenueDistribution}
+            data={RevenueDistribution()}
             cx="50%"
             cy="50%"
             outerRadius={150}
@@ -136,7 +145,7 @@ const SideColumns = () => {
             label={(entry) => `$${entry.value} (${entry.name})`}
           >
           {
-                RevenueDistribution.map((entry, index) => (
+                RevenueDistribution().map((entry, index) => (
                     <Cell key={`cell-${index}`} fill={entry.color} />
                 ))
             }
