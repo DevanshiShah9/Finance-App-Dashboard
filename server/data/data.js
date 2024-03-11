@@ -3471,7 +3471,7 @@ export const transactions = [
   {
     _id: "63bf7ccef032394f5f00243f",
     amount: "$270.05",
-    buyer: "Petronille Ganter",
+    buyer: "Reggis Ketton",
     productIds: ["63bf7ac9f03239cf1b00169b"],
   },
   {
@@ -3506,7 +3506,7 @@ export const transactions = [
   {
     _id: "63bf7ccef032394f5f002443",
     amount: "$103.60",
-    buyer: "Willyt Cato",
+    buyer: "Joannes Tinn",
     productIds: ["63bf7ac9f0323922d2001693"],
   },
   {
@@ -3539,7 +3539,7 @@ export const transactions = [
   {
     _id: "63bf7ccef0323937a500168f",
     amount: "$282.44",
-    buyer: "Glenda Stenners",
+    buyer: "Joannes Tinn",
     productIds: [
       "63bf7ac9f032395ccf001693",
       "63bf7ac9f032397420001698",
@@ -3725,7 +3725,7 @@ export const transactions = [
   {
     _id: "63bf7ccef03239855d001561",
     amount: "$207.93",
-    buyer: "Valaree Inchan",
+    buyer: "Reg Dron",
     productIds: [
       "63bf7ac9f0323975d6001692",
       "63bf7ac9f03239cf1b00169c",
@@ -3742,7 +3742,7 @@ export const transactions = [
   {
     _id: "63bf7ccef03239eb9d0016cd",
     amount: "$194.94",
-    buyer: "Sigmund Ramiro",
+    buyer: "Reg Dron",
     productIds: ["63bf7ac9f0323901e6001553"],
   },
   {
@@ -3958,7 +3958,7 @@ export const transactions = [
   {
     _id: "63bf7ccef03239eb9d0016e4",
     amount: "$73.14",
-    buyer: "Christos Sirey",
+    buyer: "Jorrie Tidswell",
     productIds: [
       "63bf7ac9f03239eb9d0016c9",
       "63bf7ac9f03239855d001553",
@@ -3986,7 +3986,7 @@ export const transactions = [
   {
     _id: "63bf7ccef03239eb9d0016e7",
     amount: "$88.26",
-    buyer: "Der Yuille",
+    buyer: "Jorrie Tidswell",
     productIds: [
       "63bf7ac9f03239343e00169e",
       "63bf7ac9f0323901e6001551",
@@ -4012,7 +4012,7 @@ export const transactions = [
   {
     _id: "63bf7ccef03239eb9d0016ea",
     amount: "$254.58",
-    buyer: "Loy Randerson",
+    buyer: "Jorrie Tidswell",
     productIds: ["63bf7ac9f032394f5f002437"],
   },
 ];

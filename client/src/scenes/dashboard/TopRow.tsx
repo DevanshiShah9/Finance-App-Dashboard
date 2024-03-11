@@ -18,7 +18,7 @@ import {
   Area,
 } from "recharts";
 
-const Row1 = () => {
+const TopRow = () => {
   const { palette } = useTheme();
   const { data } = useGetKpisQuery();
   const gridStroke = palette.grey[200];
@@ -269,4 +269,4 @@ const Row1 = () => {
   );
 };
 
-export default Row1;
+export default TopRow;
