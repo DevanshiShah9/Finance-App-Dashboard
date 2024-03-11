@@ -84,7 +84,7 @@ const MidColumn = () => {
               width={100}
               height={80}
               margin={{
-                top: 0,
+                top: 5,
                 right: -10,
                 left: 10,
                 bottom: 0,
