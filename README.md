@@ -2,11 +2,12 @@
 ## Result
 ## Final Images
 
-![Screenshot 2024-03-11 at 6 34 59 AM](https://github.com/DevanshiShah9/Finance-App-Dashboard/assets/65914716/e1b4f563-ab4c-421f-8226-1ae1b1647005)
+![Screenshot 2024-03-11 at 10 49 06 PM (2)](https://github.com/DevanshiShah9/Finance-App-Dashboard/assets/65914716/4bebed27-676f-4274-8354-f001eef4bede)
 
 ![Screenshot 2024-03-11 at 6 35 14 AM (2)](https://github.com/DevanshiShah9/Finance-App-Dashboard/assets/65914716/b947eeb4-33e9-4226-ba70-831246c20437)
 
-![Screenshot 2024-03-11 at 6 35 32 AM (2)](https://github.com/DevanshiShah9/Finance-App-Dashboard/assets/65914716/5348b7c5-14b0-4664-bac9-17137ba9f1ba)
+![Screenshot 2024-03-11 at 10 49 15 PM (2)](https://github.com/DevanshiShah9/Finance-App-Dashboard/assets/65914716/306651e4-e1a5-4c67-9b4d-6a253cc94851)
+
 
 ![Screenshot 2024-03-11 at 6 35 41 AM (2)](https://github.com/DevanshiShah9/Finance-App-Dashboard/assets/65914716/0908348b-72db-4435-8b05-8390fae893a8)
 
