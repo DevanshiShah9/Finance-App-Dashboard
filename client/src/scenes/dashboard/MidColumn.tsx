@@ -27,7 +27,7 @@ const MidColumn = () => {
     return <div>Loading...</div>;
   }
 
-  const ATV = () => {
+  const AOV = () => {
     if (!kpiData || !transactionData) return null;
 
     const totalRevenue = kpiData[0].totalRevenue;
@@ -35,8 +35,8 @@ const MidColumn = () => {
 
     if (totalTransactions === 0) return 0;
 
-    const ATV = totalRevenue / totalTransactions;
-    return ATV.toFixed(2);
+    const AOV = totalRevenue / totalTransactions;
+    return AOV.toFixed(2);
   };
 
   const UniqueUsersCount = () => {
@@ -75,10 +75,10 @@ const MidColumn = () => {
         <BoxHeader title="Yearly Stats" sideText="" />
         <FlexBetween mt="2rem" gap="1.5rem" pr="1rem">
           <Box ml="0.7rem" mt="-1.5rem" flexBasis="30%" textAlign="center">
-            <Typography variant="h3">ATV</Typography>
-            <Typography variant="h6">(Average Transaction Value)</Typography>
+            <Typography variant="h3">AOV</Typography>
+            <Typography variant="h6">(Average Order Value)</Typography>
             <Typography m="0.3rem 0" variant="h3" color={greenColor}>
-              ${ATV()}
+              ${AOV()}
             </Typography>
           </Box>
           <Box mt="0.2rem" flexBasis="30%" textAlign="center">
